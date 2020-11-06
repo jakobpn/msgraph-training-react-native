@@ -41,21 +41,19 @@ const WorkbookComponent = () => {
       </Modal>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Worksheets</Text>
-        <FlatList data={workbookState.data.worksheets}
-          renderItem={({item}) =>
-            <View style={styles.item}>
-              <Text style={styles.name}>{item.name}</Text>
-            </View>
-          } />
+        {workbookState.data.worksheets?.map((item:any) => 
+          <View style={styles.item} key={item.name}>
+            <Text style={styles.name}>{item.name}</Text>
+          </View>
+        )}
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Tables</Text>
-        <FlatList data={workbookState.data.tables}
-          renderItem={({item}) =>
-            <View style={styles.item}>
-              <Text style={styles.name}>{item.name}</Text>
-            </View>
-          } />
+        {workbookState.data.tables?.map((item:any) => 
+          <View style={styles.item} key={item.name}>
+            <Text style={styles.name}>{item.name}</Text>
+          </View>
+        )}
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Calculate Loan Payment</Text>
@@ -88,6 +86,8 @@ export default class WorkbookScreen extends React.Component {
 
   async componentDidMount() {
     try {
+      // Copy the Excel workbook GraphTutorial.xlsx from the Excel folder in this project to OneDrive
+      // Replace the workbook id here with the id of the GraphTutorial.xslx on OneDrive (use Microsoft Graph Explorer to find it)
       const workbookId = '01JLZJVCRQBG5OWCHLLNCIVPTUVRPQ466M';
 
       const workbookData: any = {};
