@@ -33,4 +33,44 @@ export class GraphManager {
       .get();
   }
   // </GetEventsSnippet>
+
+  // Get worksheets in workbook
+  static getWorksheets = async(workbookId: string) => {
+    // GET me/drive/items/{drive-item-id}/workbook/worksheets
+    return graphClient.api(`me/drive/items/${workbookId}/workbook/worksheets`)
+      .get();
+  }
+
+  // Get tables in workbook
+  static getTables = async(workbookId: string) => {
+    // GET me/drive/items/{drive-item-id}/workbook/tables
+    return graphClient.api(`me/drive/items/${workbookId}/workbook/tables`)
+      .get();
+  }
+
+  // Get range
+  static getRange = async(workbookId: string, worksheetId: string, address: string) => {
+    // GET me/drive/items/{drive-item-id}/workbook/worksheets/{worksheetId}/range(address='{address}')
+    return graphClient.api(`me/drive/items/${workbookId}/workbook/worksheets/${worksheetId}/range(address='${address}')`)
+      .get();
+  }
+  
+  // Set range
+  static setRange = async(workbookId: string, worksheetId: string, address: string, values: any) => {
+    // PATCH me/drive/items/{drive-item-id}/workbook/worksheets/{worksheetId}/range(address='{address}')
+    return graphClient.api(`me/drive/items/${workbookId}/workbook/worksheets/${worksheetId}/range(address='${address}')`)
+      .patch(values);
+  }
+
+  // Calculate loan payment
+  static calculateLoanPayment = async(workbookId: string, rate: number, nper: number, pv: number) => {
+    // POST /me/drive/items/{drive-item-id}/workbook/functions/pmt
+    return graphClient.api(`me/drive/items/${workbookId}/workbook/functions/pmt`)
+      .post({
+        "rate": rate,
+        "nper": nper,
+        "pv": pv
+    });
+  }
+
 }

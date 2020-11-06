@@ -21,6 +21,7 @@ import { NavigationContext } from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
 import CalendarScreen from '../screens/CalendarScreen';
+import WorkbookScreen from '../screens/WorkbookSceen';
 import { AuthManager } from '../auth/AuthManager';
 import { GraphManager } from '../graph/GraphManager';
 
@@ -127,6 +128,9 @@ export default class DrawerMenuContent extends React.Component {
         <Drawer.Screen name='Calendar'
           component={CalendarScreen}
           options={{drawerLabel: 'Calendar'}} />
+        <Drawer.Screen name='Workbook'
+          component={WorkbookScreen}
+          options={{drawerLabel: 'Workbook'}} />
       </Drawer.Navigator>
     );
   }
